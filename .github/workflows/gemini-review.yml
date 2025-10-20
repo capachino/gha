@@ -40,7 +40,7 @@ jobs:
           permission-contents: 'read'
           permission-issues: 'write'
           permission-pull-requests: 'write'
-
+    
       - name: 'Acknowledge request'
         env:
           GITHUB_TOKEN: '${{ steps.mint_identity_token.outputs.token || secrets.GITHUB_TOKEN || github.token }}'
@@ -52,6 +52,7 @@ jobs:
           gh issue comment "${ISSUE_NUMBER}" \
             --body "${MESSAGE}" \
             --repo "${REPOSITORY}"
+
       - name: 'Checkout repository'
         uses: 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' # ratchet:actions/checkout@v5
 
@@ -185,4 +186,3 @@ jobs:
               }
             }
           prompt: '/security:analyze-github-pr'
-
